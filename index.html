@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Global Time Zone Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>🌎 Global Time Zone Converter</h1>
+            <p>Convert time across global tech teams, offices and regions.</p>
+        </div>
+
+        <!-- Converter -->
+        <div class="card">
+
+            <div class="timezone-grid">
+
+                <!-- FROM -->
+                <div class="field">
+                    <label>From Timezone</label>
+
+                    <div class="timezone-wrapper">
+
+                        <input type="text" id="fromSearch" class="timezone-search" placeholder="🔍 Search timezone..."
+                            autocomplete="off">
+
+                        <div id="fromDropdown" class="timezone-dropdown"></div>
+
+                    </div>
+                </div>
+
+                <!-- SWAP -->
+                <div class="swap-container">
+
+                    <button class="swap-btn" onclick="swapTimezones()" title="Swap timezones">
+                        ⇄
+                    </button>
+
+                </div>
+
+                <!-- TO -->
+                <div class="field">
+                    <label>To Timezone</label>
+
+                    <div class="timezone-wrapper">
+
+                        <input type="text" id="toSearch" class="timezone-search" placeholder="🔍 Search timezone..."
+                            autocomplete="off">
+
+                        <div id="toDropdown" class="timezone-dropdown"></div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- DATE/TIME -->
+
+            <div class="date-time-grid">
+
+                <div>
+                    <label for="dateInput">Date</label>
+                    <input type="date" id="dateInput">
+                </div>
+
+                <div>
+                    <label for="timeInput">Time</label>
+                    <input type="time" id="timeInput">
+                </div>
+
+            </div>
+
+            <!-- BUTTONS -->
+
+            <div class="button-row">
+
+                <button class="primary-btn" onclick="convertTime()">
+                    Convert Time
+                </button>
+
+                <button class="secondary-btn" onclick="setCurrentDateTime()">
+                    🕐 Use Current Date & Time
+                </button>
+
+            </div>
+
+            <!-- RESULT -->
+
+            <div id="result" class="result">
+
+                <div class="result-label">
+                    Converted Time
+                </div>
+
+                <div id="resultTime" class="result-time"></div>
+
+                <div id="resultDate" class="result-date"></div>
+
+                <div id="resultTimezone" class="timezone-abbreviation"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- COMMON TECH ZONES -->
+
+        <div class="card">
+
+            <h2 class="section-title">
+                ⭐ Common Tech Team Zones
+            </h2>
+
+            <div class="common-zones">
+
+                <button class="zone-btn" onclick="selectDestination('Asia/Kolkata')">
+                    🇮🇳 India — IST
+                </button>
+
+                <button class="zone-btn" onclick="selectDestination('America/Los_Angeles')">
+                    🇺🇸 US Pacific — PT
+                </button>
+
+                <button class="zone-btn" onclick="selectDestination('America/New_York')">
+                    🇺🇸 US Eastern — ET
+                </button>
+
+                <button class="zone-btn" onclick="selectDestination('America/Chicago')">
+                    🇺🇸 US Central — CT
+                </button>
+
+                <button class="zone-btn" onclick="selectDestination('Europe/London')">
+                    🇬🇧 London — GMT/BST
+                </button>
+
+                <button class="zone-btn" onclick="selectDestination('Europe/Berlin')">
+                    🇩🇪 Berlin — CET/CEST
+                </button>
+
+                <button class="zone-btn" onclick="selectDestination('Asia/Dubai')">
+                    🇦🇪 Dubai — GST
+                </button>
+
+                <button class="zone-btn" onclick="selectDestination('Asia/Riyadh')">
+                    🇸🇦 Riyadh — AST
+                </button>
+
+                <button class="zone-btn" onclick="selectDestination('Asia/Singapore')">
+                    🇸🇬 Singapore — SGT
+                </button>
+
+                <button class="zone-btn" onclick="selectDestination('Asia/Tokyo')">
+                    🇯🇵 Tokyo — JST
+                </button>
+
+                <button class="zone-btn" onclick="selectDestination('Australia/Sydney')">
+                    🇦🇺 Sydney — AEST/AEDT
+                </button>
+
+                <button class="zone-btn" onclick="selectDestination('Asia/Shanghai')">
+                    🇨🇳 China — CST
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUICK TIMES -->
+
+        <div class="card">
+
+            <h2 class="section-title">
+                ⚡ Quick Times
+            </h2>
+
+            <div class="quick-times">
+
+                <button class="quick-time" onclick="setQuickTime('09:00')">
+                    9:00 AM
+                </button>
+
+                <button class="quick-time" onclick="setQuickTime('12:00')">
+                    12:00 PM
+                </button>
+
+                <button class="quick-time" onclick="setQuickTime('15:00')">
+                    3:00 PM
+                </button>
+
+                <button class="quick-time" onclick="setQuickTime('17:00')">
+                    5:00 PM
+                </button>
+
+                <button class="quick-time" onclick="setQuickTime('20:00')">
+                    8:00 PM
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- INFO -->
+
+        <div class="card">
+
+            <h2 class="section-title">
+                ℹ️ About Time Zones
+            </h2>
+
+            <div class="info">
+
+                <p>
+                    This converter uses the browser's
+                    <strong>Intl.DateTimeFormat</strong> API and
+                    IANA timezone database.
+                </p>
+
+                <p>
+                    Daylight Saving Time is handled automatically.
+                    For example, selecting
+                    <strong>America/New_York</strong>
+                    will automatically display
+                    <strong>EST</strong> or <strong>EDT</strong>
+                    depending on the selected date.
+                </p>
+
+                <p>
+                    You should therefore select a regional timezone
+                    such as <strong>Eastern Time (ET)</strong> rather
+                    than creating separate EST and EDT timezone entries.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+<script src="script.js"></script>
+
+</html>
