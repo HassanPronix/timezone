@@ -455,7 +455,7 @@
         ============================================================ */
 
         let fromTimezone = "Asia/Kolkata";
-        let toTimezone = "America/New_York";
+        let toTimezone = "Europe/Berlin";
 
 
         /* ============================================================
